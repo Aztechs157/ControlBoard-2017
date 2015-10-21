@@ -31,7 +31,7 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-        System.out.println("Hello World");
+        System.out.println("Robot.robotInit");
         
 		oi = new OI();
         // instantiate the command used for the autonomous period
@@ -46,7 +46,6 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
-        if (motorCommand != null) motorCommand.start();
     }
 
     /**
@@ -62,6 +61,7 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        if (motorCommand != null) motorCommand.start();
     }
 
     /**

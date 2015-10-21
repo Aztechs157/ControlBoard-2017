@@ -17,12 +17,13 @@ public class MotorCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        System.out.println("motorcommand.initialize");
+        System.out.println("MotorCommand.initialize");
         Robot.motorSubsystem.setVoltage(6.0);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        //System.out.println("MotorCommand.execute");
         Robot.motorSubsystem.setVoltage(6.0);
     }
 

@@ -17,6 +17,5 @@ public class RobotMap {
     // public static int rangefinderModule = 1;
     
     // Motor Subsystem
-    public static boolean useCAN;
     public static final int motorSubsystemCANJaguarID = 6;
 }
