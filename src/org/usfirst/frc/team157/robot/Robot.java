@@ -23,8 +23,8 @@ public class Robot extends IterativeRobot {
 	public static final MotorSubsystem motorSubsystem = new MotorSubsystem();
 	public static OI oi;
 
-    Command autonomousCommand;
-    Command motorCommand;
+    public static Command autonomousCommand;
+    public static Command motorCommand;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -44,6 +44,8 @@ public class Robot extends IterativeRobot {
 	}
 
     public void autonomousInit() {
+        System.out.println("Robot.autonomousInit");
+        
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
     }
@@ -56,26 +58,38 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-		// This makes sure that the autonomous stops running when
+        System.out.println("Robot.teleopInit");
+
+        // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
-        if (motorCommand != null) motorCommand.start();
+        if (motorCommand != null) 
+        {
+            System.out.println("motorCommand.start");
+            motorCommand.start();
+        }
+        else
+        {
+            System.out.println("BUG CHECK: Robot.teleopInit -- motorCommand is null");
+        }
     }
 
     /**
      * This function is called when the disabled button is hit.
      * You can use it to reset subsystems before shutting down.
      */
-    public void disabledInit(){
-
+    public void disabledInit()
+    {
+        System.out.println("Robot.disabledInit");
     }
 
     /**
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+        //System.out.println("Robot.teleopPeriodic");
         Scheduler.getInstance().run();
     }
     

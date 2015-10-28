@@ -10,34 +10,52 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class MotorCommand extends Command {
 
+    public int cycles = 0;
+    
     public MotorCommand() {
+        System.out.println("MotorCommand._constructor");
         // Use requires() here to declare subsystem dependencies
         requires(Robot.motorSubsystem);
+        cycles = 0;
     }
 
     // Called just before this Command runs the first time
+    @Override
     protected void initialize() {
         System.out.println("MotorCommand.initialize");
         Robot.motorSubsystem.setVoltage(6.0);
+        cycles = 0;
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-        //System.out.println("MotorCommand.execute");
-        Robot.motorSubsystem.setVoltage(6.0);
+    @Override
+    protected void execute() 
+    {
+        cycles++;
+        if (cycles < 10)
+        {
+            System.out.println("MotorCommand.execute");
+        
+        }
+        Robot.motorSubsystem.setVoltage(0.50);       
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    @Override
+    protected boolean isFinished() 
+    {
         return false;
     }
 
     // Called once after isFinished returns true
+    @Override
     protected void end() {
+        System.out.println("MotorCommand.end");
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
+    @Override
     protected void interrupted() {
     }
 }

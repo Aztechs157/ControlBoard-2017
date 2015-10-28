@@ -22,6 +22,7 @@ public class MotorSubsystem extends Subsystem
 {
     public CANJaguar jag;
 
+   
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     @Override
@@ -34,8 +35,17 @@ public class MotorSubsystem extends Subsystem
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());\
 
-        jag = new CANJaguar(RobotMap.motorSubsystemCANJaguarID);
-        for (int i = 0; i < 3; i++)
+        try
+        {
+            jag = new CANJaguar(RobotMap.motorSubsystemCANJaguarID);
+        }
+        catch (Exception e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        try
         {
             // jag.setVoltageRampRate(0.02);
             //jag.configNeutralMode(CANJaguar.NeutralMode.Coast);
@@ -45,10 +55,15 @@ public class MotorSubsystem extends Subsystem
             
             //jag.setVoltageRampRate(0.02);
             //jag.configNeutralMode(CANJaguar.NeutralMode.Coast);
-            jag.setVoltageMode();
+            //jag.setVoltageMode();
             //jag.setVoltageMode(CANJaguar.kQuadEncoder, 360 * 3);
             // jag.setPID(2, 0, 0);
             //jag.enableControl();
+        }
+        catch (Exception e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
 
@@ -57,8 +72,21 @@ public class MotorSubsystem extends Subsystem
         // System.out.println("MotorSubsystem.setVoltage(" + voltage + ")");
         if (null != jag)
         {
-            jag.set(voltage);
+            try
+            {
+                jag.set(voltage);
+            }
+            catch (Exception e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
+        else
+        {
+            System.out.println("BUG CHECK: MotorSubsystem.setVoltage -- jag is null");
+        }
+        
     }
 
     public void setSpeed(double speed)
@@ -66,7 +94,19 @@ public class MotorSubsystem extends Subsystem
         // System.out.println("MotorSubsystem.setSpeed(" + speed + ")");
         if (null != jag)
         {
-            jag.set(speed);
+            try
+            {
+                jag.set(speed);
+            }
+            catch (Exception e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            System.out.println("BUG CHECK: MotorSubsystem.setSpeed -- jag is null");
         }
     }
 }
