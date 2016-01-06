@@ -13,6 +13,7 @@ package org.usfirst.frc.team157.robot.subsystems;
 import org.usfirst.frc.team157.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -20,7 +21,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class MotorSubsystem extends Subsystem
 {
-    public CANJaguar jag;
+    public CANTalon talon;
 
    
     // Put methods for controlling this subsystem
@@ -37,7 +38,7 @@ public class MotorSubsystem extends Subsystem
 
         try
         {
-            jag = new CANJaguar(RobotMap.motorSubsystemCANJaguarID);
+            talon = new CANTalon(RobotMap.motorSubsystemCANTalonID);
         }
         catch (Exception e)
         {
@@ -70,11 +71,11 @@ public class MotorSubsystem extends Subsystem
     public void setVoltage(double voltage)
     {
         // System.out.println("MotorSubsystem.setVoltage(" + voltage + ")");
-        if (null != jag)
+        if (null != talon)
         {
             try
             {
-                jag.set(voltage);
+                talon.set(voltage);
             }
             catch (Exception e)
             {
@@ -92,11 +93,11 @@ public class MotorSubsystem extends Subsystem
     public void setSpeed(double speed)
     {
         // System.out.println("MotorSubsystem.setSpeed(" + speed + ")");
-        if (null != jag)
+        if (null != talon)
         {
             try
             {
-                jag.set(speed);
+                talon.set(speed);
             }
             catch (Exception e)
             {
