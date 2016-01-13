@@ -17,5 +17,5 @@ public class RobotMap {
     // public static int rangefinderModule = 1;
     
     // Motor Subsystem
-    public static final int motorSubsystemCANTalonID = 6;
+    public static final int motorSubsystemCANTalonID = 7;
 }
