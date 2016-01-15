@@ -3,7 +3,13 @@
 /testbin/
 /dist/
 /build/
+
+
+.classpath
+build.properties
+build.xml
 sysProps.xml
+
 *.class
 
 # Package Files #
