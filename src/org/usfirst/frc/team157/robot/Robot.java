@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
+
 import org.usfirst.frc.team157.robot.commands.ExampleCommand;
 import org.usfirst.frc.team157.robot.commands.MotorCommand;
 import org.usfirst.frc.team157.robot.subsystems.ExampleSubsystem;
@@ -26,6 +28,11 @@ public class Robot extends IterativeRobot {
     public static Command autonomousCommand;
     public static Command motorCommand;
 
+    public static NetworkTable dataTable;
+    
+    public static int count = 0;
+    public static int value = 0;
+    
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -35,8 +42,10 @@ public class Robot extends IterativeRobot {
         
 		oi = new OI();
         // instantiate the command used for the autonomous period
-        autonomousCommand = new ExampleCommand();
-        motorCommand = new MotorCommand();
+        //autonomousCommand = new ExampleCommand();
+        //motorCommand = new MotorCommand();
+        
+        dataTable = NetworkTable.getTable("datatable");
     }
 	
 	public void disabledPeriodic() {
@@ -74,6 +83,9 @@ public class Robot extends IterativeRobot {
         {
             System.out.println("BUG CHECK: Robot.teleopInit -- motorCommand is null");
         }
+        
+        count = 0;
+        value = 0;
     }
 
     /**
@@ -91,6 +103,14 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         //System.out.println("Robot.teleopPeriodic");
         Scheduler.getInstance().run();
+        
+        count++;
+        if (count > 500)
+        {
+            count = 0;
+            value++;
+            dataTable.putNumber("value", value);
+        }
     }
     
     /**
